@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+* {
+  padding: 0; 
+  margin: 0; 
+  font-family: 'Varela Round';
+  font-weight: 600; 
+  font-size: 19px;
+}
+
+body {
+   /* fallback for old browsers */
+   background-color: #cfb6e6;
+  
+   /* Chrome 10-25, Safari 5.1-6 */
+   background: -webkit-linear-gradient(to right, #cfb6e6, rgb(171, 181, 240));
+   
+   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   background: linear-gradient(to right, #cfb6e6, rgb(171, 181, 240));
+}
+
+/* .titleRow {
+  display: flex; 
+  justify-content: center;
+} */
+
+.card {
+  width: 700px;
+  border: 4px solid transparent; /* Set the border style to solid */
+  border-image: linear-gradient(to right, #a771d9, rgb(171, 181, 240)); /* Apply the linear gradient as the border image */
+  border-image-slice: 1; /* Ensure the entire border is covered by the gradient */
+}
+
+label {
+  display: block;
+  text-align: center;
+}
+
+.opt-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 1em;
+}
+
+.inputs {
+    display: flex;
+    gap: 1em;
+}
+
+#grid {
+  grid-gap: 0;
+  display: inline-grid;
+  vertical-align: top;
+}
+
+.tile {
+  height: 20px;
+  width: 20px;
+  border: 1px solid #000000;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+}
+
+/* INPUTS */
+input[type="number"] {
+  padding: 0.7em;
+  border-radius: 0.5em;
+  border: 2px solid #c7c7c7;
+}
+
+
+input[type="color"] {
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+}
+/* END INPUTS */
+
+.fa, .fa-brands, .fa-duotone, .fa-light, .fa-regular, .fa-solid, .fa-thin, .fab, .fad, .fal, .far, .fas, .fat {
+line-height: inherit;
+}
+
+.d-flex  {
+  flex-direction: column;
+}
+
+#make-grid {
+  margin-bottom: 80%;
+}
+
+button {
+  background-color: #a771d9;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#paintTools button {
+  border-radius: 10px;
+}
+
+.createGrid button {
+  border-radius: 10px;
+
+}
+#make-grid {
+  margin-top: 80%;
+}
+#imgTitle {
+text-align: center
+}
+
+#cardContent {
+  border: 4px solid transparent;
+  border-image: linear-gradient(to right, #a771d9, rgb(171, 181, 240));
+  border-image-slice: 1;
+}
