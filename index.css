@@ -68,6 +68,10 @@ label {
 }
 
 /* INPUTS */
+/* input[type="text"] {
+  text-transform: lowercase;
+} */
+
 input[type="number"] {
   padding: 0.7em;
   border-radius: 0.5em;

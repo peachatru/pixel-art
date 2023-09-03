@@ -217,7 +217,8 @@ saveButton.addEventListener("click", () => {
       img.src = canvas.toDataURL();
      
       const downloadButton = document.createElement("a");
-      const format = document.getElementById("format").value;
+      let format = document.getElementById("format").value;
+      format = format.toLowerCase(); 
 
       if (format === "png") {
         downloadButton.setAttribute("href", img.src);
