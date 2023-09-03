@@ -206,6 +206,7 @@ redoButton.addEventListener("click", () => {
 
 // saving image functionality adapted from: https://stackoverflow.com/questions/10673122/how-to-save-canvas-as-an-image-with-canvas-todataurl
 saveButton.addEventListener("click", () => {
+
   // we shouldn't save an empty image header!
   if(imgTitle.value.length === 0) {
     alert("Your art needs to be named!");
@@ -213,11 +214,25 @@ saveButton.addEventListener("click", () => {
     // converts an HTML element to type canvas 
     html2canvas(grid).then((canvas) => {
       const img = document.createElement("img");
-      img.src = canvas.toDataURL("image/png");
-      
-      const imgFileName = imgTitle.value + '.png';
+      img.src = canvas.toDataURL();
+     
       const downloadButton = document.createElement("a");
-      downloadButton.setAttribute("href", img.src);
+      const format = document.getElementById("format").value;
+
+      if (format === "png") {
+        downloadButton.setAttribute("href", img.src);
+      } else if (format === "jpeg") {
+        downloadButton.setAttribute("href", img.src.replace("image/png", "image/jpeg"));
+      } else if (format === "svg") {
+        downloadButton.setAttribute("href", img.src.replace("image/png", "image/svg+xml"));
+      } else if(format === "") {
+        alert("Please select an image format!");
+      } else { // if format is anything other than the format options provided
+        alert("Please select an image format!");
+
+      }
+    
+      const imgFileName = imgTitle.value + '.' + `${format}`;
       downloadButton.setAttribute("download", imgFileName);
       downloadButton.click();
       downloadButton.remove();
