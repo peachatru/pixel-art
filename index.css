@@ -22,7 +22,6 @@ body {
 .card {
   width: 700px;
   border: 4px solid transparent; /* Set the border style to solid */
-  border-image: linear-gradient(to right, #a771d9, rgb(171, 181, 240)); /* Apply the linear gradient as the border image */
   border-image-slice: 1; /* Ensure the entire border is covered by the gradient */
 }
 
@@ -148,7 +147,7 @@ text-align: center
 
 #cardContent {
   border: 4px solid transparent;
-  border-image: linear-gradient(to right, #a771d9, rgb(171, 181, 240));
+  border-image: linear-gradient(to right, rgb(171, 181, 240), #cfb6e6); /* Apply the linear gradient as the border image */
   border-image-slice: 1;
 }
 
@@ -158,7 +157,7 @@ text-align: center
   *{
     font-size: 10px;
   }
-  
+
   #cardContent {
     width: auto;
     height: auto;
