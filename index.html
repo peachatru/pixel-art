@@ -32,7 +32,7 @@
   </head>
   <body>
     <section class="vh-100 gradient-custom">
-      <div class="container py-5 h-100">
+      <div class="container py-5">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-xl-10">
             <div class="card" id="cardContent">
@@ -104,6 +104,8 @@
                               
                               <!-- we're hiding the input type color from the user so that when they click on the paintbrush icon, 
                                 the color selector tool will pop up  -->
+                              <!-- resolved color input issue rendering on IOS from: https://stackoverflow.com/questions/74511391/open-input-color-programatically-in-ios -->
+                              <label id="color-input-label" for="color-input"></label>
                               <input type="color" value="#8b8bea" id="color-input" height="0" width="0">
                           </div>
                         </div>

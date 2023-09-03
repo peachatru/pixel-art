@@ -19,15 +19,9 @@ body {
    background: linear-gradient(to right, #cfb6e6, rgb(171, 181, 240));
 }
 
-/* .titleRow {
-  display: flex; 
-  justify-content: center;
-} */
-
 .card {
   width: 700px;
   border: 4px solid transparent; /* Set the border style to solid */
-  border-image: linear-gradient(to right, #a771d9, rgb(171, 181, 240)); /* Apply the linear gradient as the border image */
   border-image-slice: 1; /* Ensure the entire border is covered by the gradient */
 }
 
@@ -73,6 +67,10 @@ label {
 }
 
 /* INPUTS */
+/* input[type="text"] {
+  text-transform: lowercase;
+} */
+
 input[type="number"] {
   padding: 0.7em;
   border-radius: 0.5em;
@@ -83,7 +81,27 @@ input[type="number"] {
 input[type="color"] {
   cursor: pointer;
   opacity: 0;
-  visibility: hidden;
+  /* visibility: hidden; */
+}
+
+
+input[type="color"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  width: 70px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+}
+input[type="color"]::-webkit-color-swatch {
+  border-radius: 8px;
+  border: 4px solid #000000;
+}
+input[type="color"]::-moz-color-swatch {
+  border-radius: 8px;
+  border: 4px solid #000000;
 }
 /* END INPUTS */
 
@@ -129,6 +147,29 @@ text-align: center
 
 #cardContent {
   border: 4px solid transparent;
-  border-image: linear-gradient(to right, #a771d9, rgb(171, 181, 240));
+  border-image: linear-gradient(to right, rgb(171, 181, 240), #cfb6e6); /* Apply the linear gradient as the border image */
   border-image-slice: 1;
+}
+
+
+/* mobile view! */
+@media (max-width: 768px) {
+  *{
+    font-size: 10px;
+  }
+
+  #cardContent {
+    width: auto;
+    height: auto;
+  }
+
+  body {
+    background-color: #cfb6e6;
+    background: -webkit-linear-gradient(to right, #cfb6e6, rgb(171, 181, 240));
+    background: linear-gradient(to right, #cfb6e6, rgb(171, 181, 240));
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
 }

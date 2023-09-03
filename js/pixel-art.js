@@ -170,7 +170,8 @@ eraseButton.addEventListener("click", () => {
 // On click, the user will be able to draw and paint each pixel with the 
 // desired color
 paintButton.addEventListener("click", () => {
-  colorButton.click();
+  document.getElementById('color-input-label').click(); 
+  // colorButton.click();
   erase = false;
 });
 
@@ -217,7 +218,8 @@ saveButton.addEventListener("click", () => {
       img.src = canvas.toDataURL();
      
       const downloadButton = document.createElement("a");
-      const format = document.getElementById("format").value;
+      let format = document.getElementById("format").value;
+      format = format.toLowerCase(); 
 
       if (format === "png") {
         downloadButton.setAttribute("href", img.src);
@@ -226,9 +228,9 @@ saveButton.addEventListener("click", () => {
       } else if (format === "svg") {
         downloadButton.setAttribute("href", img.src.replace("image/png", "image/svg+xml"));
       } else if(format === "") {
-        alert("Please select an image format!");
+        alert("Please enter an image format!");
       } else { // if format is anything other than the format options provided
-        alert("Please select an image format!");
+        alert("Please enter an image format!");
 
       }
     
