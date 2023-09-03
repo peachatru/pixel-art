@@ -8,7 +8,7 @@ let heightOfCanvas = document.getElementById("canvas-height");
 let grid = document.getElementById("grid");
 
 // Painting and Updating the tile 
-let colorButton = document.getElementById("color-input-label");
+let colorButton = document.getElementById("color-input");
 let paintButton = document.getElementById("paint-btn");
 let redoButton = document.getElementById("redo-btn");
 
@@ -170,7 +170,8 @@ eraseButton.addEventListener("click", () => {
 // On click, the user will be able to draw and paint each pixel with the 
 // desired color
 paintButton.addEventListener("click", () => {
-  colorButton.click();
+  document.getElementById('color-input-label').click(); 
+  // colorButton.click();
   erase = false;
 });
 
