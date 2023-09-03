@@ -123,6 +123,10 @@ button {
 text-align: center
 }
 
+#format {
+  text-align: center;
+}
+
 #cardContent {
   border: 4px solid transparent;
   border-image: linear-gradient(to right, #a771d9, rgb(171, 181, 240));
