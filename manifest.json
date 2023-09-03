@@ -1,0 +1,25 @@
+{
+    "name": "Pixel Pal",
+    "description": "A pixel art maker for fun and everyone!",
+    "start_url": "/",
+    "lang": "en-US",
+    "theme_color": "#b4b5ee",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "images/paint-brush64x64.png",
+        "sizes": "64x64",
+        "type": "image/png"
+      },
+      {
+        "src": "images/paint-brush256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      },
+      {
+        "src": "images/paint-brush512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }

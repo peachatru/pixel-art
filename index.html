@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Pal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- Font Awesome -->
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    
+     <!-- MDB CSS-->
+     <link
+     href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
+     rel="stylesheet"
+   />
+
+   <!-- MANIFEST JSON FOR PWA! YAY! -->
+   <link rel="manifest" href="manifest.json">
+
+
+  </head>
+  <body>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-10">
+            <div class="card" id="cardContent">
+              <div class="card-body">
+                <!-- BEGIN MAIN BODY CONTENT  -->
+                <div id="mainBody" >
+                  <div class=" pt-2">
+                      <div class="row d-flex d-flex justify-content-center align-items-center">
+                        <div class="col-md-8 col-lg-9 col-xl-8">
+                          <div class="d-flex">
+                            <!-- START TITLE SECTION -->
+                            <div class="opt-wrapper">
+                              <label for="imgTitle">Title: </label>
+                      
+                              <input class="center-block" id="imgTitle" name="imgTitle" type="text" placeholder="Image Title"></input>
+                              . 
+                              <input class="center-block" id="format" name="format" type="text" placeholder="Format: png, svg, jpeg"></input>
+
+                            </div>
+                            <!-- END TITLE SECTION -->
+
+                            <div class="options">
+                              <!-- START CREATE CANVAS INPUT -->
+                              <div class="opt-wrapper">
+                                <div class="createGrid">
+                                  <label for="canvas-width">Width: </label>
+                                  <input type="number" id="canvas-width" min="1" max="20" value="10"/>          
+                                </div>
+                                <div class="createGrid">
+                                  <label for="canvas-height">Height: </label>
+                                  <input type="number" id="canvas-height" min="1" max="20" value="10"/>          
+                                </div>
+                      
+                                <div class="createGrid">
+                                    <button id="make-grid"><i class="fa-solid fa-circle-plus"></i></button>
+                                </div>
+                              </div>
+                              <!-- END CREATE CANVAS INPUT -->
+
+                              <!-- START PAINT TOOLS SECTION: paint, erase, clear All, undo, redo, and save image -->
+                              <div class="opt-wrapper" id="paintTools">
+                                
+                                <!-- START PAINT BUTTON -->
+                                <button class="btn-default" id="paint-btn"><i class="fa-solid fa-paintbrush"></i></button>
+                                
+                                <!-- START ERASE BUTTON -->
+                                <button id="erase-btn"><i class="fa-solid fa-eraser"></i></button>
+
+                                <!-- START CLEAR GRID BUTTON -->
+                                <button id="clear-grid"><i class="fa-regular fa-circle-xmark"></i></button>
+                                
+                                <!-- START UNDO ACTION BUTTON -->
+                                <button id="undo-btn" class="undo-btn"><i class="fa fa-undo" aria-hidden="true"></i></button>
+                                
+                                <!-- START REDO ACTION BUTTON -->
+                                <button id="redo-btn" class="redo-btn"><i class="fas fa-redo"></i></button>
+                              
+                                <!-- START SAVE ACTION BUTTON -->
+                                <button id="save-btn">Save!</button>
+                                
+                      
+                              </div>
+
+                              <!-- This is where the canvas will be created and contained -->
+                              <div class="container">
+                                <div id="grid"></div>
+                                </div>
+                              </div>
+                              
+                              <!-- we're hiding the input type color from the user so that when they click on the paintbrush icon, 
+                                the color selector tool will pop up  -->
+                              <input type="color" value="#8b8bea" id="color-input" height="0" width="0">
+                          </div>
+                        </div>
+                      </div>
+                 
+                  </div>
+                </div> 
+                <!-- END MAIN BODY CONTENT  -->
+   
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Script -->
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/pixel-art.js"></script>
+
+    <!-- import service worker js -->
+    <script src="js/index.js"></script>
+
+    <!-- Favicon for PWA is from: <div> Icons made by <a href="https://www.flaticon.com/authors/icongeek26" title="Icongeek26"> Icongeek26 </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div> -->
+  </body>
+</html>
