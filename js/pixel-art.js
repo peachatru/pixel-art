@@ -8,7 +8,7 @@ let heightOfCanvas = document.getElementById("canvas-height");
 let grid = document.getElementById("grid");
 
 // Painting and Updating the tile 
-let colorButton = document.getElementById("color-input");
+let colorButton = document.getElementById("color-input-label");
 let paintButton = document.getElementById("paint-btn");
 let redoButton = document.getElementById("redo-btn");
 
