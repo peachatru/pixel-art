@@ -228,9 +228,9 @@ saveButton.addEventListener("click", () => {
       } else if (format === "svg") {
         downloadButton.setAttribute("href", img.src.replace("image/png", "image/svg+xml"));
       } else if(format === "") {
-        alert("Please select an image format!");
+        alert("Please enter an image format!");
       } else { // if format is anything other than the format options provided
-        alert("Please select an image format!");
+        alert("Please enter an image format!");
 
       }
     
