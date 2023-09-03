@@ -18,6 +18,7 @@ let eraseButton = document.getElementById("erase-btn");
 let undoButton = document.getElementById("undo-btn");
 
 // saving the image
+let selectImageFormat = document.getElementById("select-img-format");
 let saveButton = document.getElementById("save-btn");
 let imgTitle = document.getElementById("imgTitle");
 
@@ -108,7 +109,7 @@ function createCanvas() {
         let pixelId = document.elementFromPoint(
           !doesDeviceSupportTouch() ? e.clientX : e.touches[0].clientX,
           !doesDeviceSupportTouch() ? e.clientY : e.touches[0].clientY
-        ).id;
+        );
         //updatePixelColor
         updatePixelColor(pixelId);
       });
@@ -186,6 +187,9 @@ undoButton.addEventListener("click", () => {
     if(!redoStack.includes(undoTile)) {
       redoColor.push(undoTile.style.backgroundColor); 
       redoStack.push(undoTile);
+    } else if(redoStack.includes(undoTile)) {
+      redoStack.push(undoTile);
+
     }
 
     undoTile.style.backgroundColor = "transparent"; 
@@ -217,24 +221,13 @@ saveButton.addEventListener("click", () => {
       const img = document.createElement("img");
       img.src = canvas.toDataURL();
      
+      // getting the file format from the options in select's drop down   
+      let format = selectImageFormat.options[selectImageFormat.selectedIndex].value;      
+      const imgFileName = imgTitle.value + '.' + format;
+
+      // downloading the image!
       const downloadButton = document.createElement("a");
-      let format = document.getElementById("format").value;
-      format = format.toLowerCase(); 
-
-      if (format === "png") {
-        downloadButton.setAttribute("href", img.src);
-      } else if (format === "jpeg") {
-        downloadButton.setAttribute("href", img.src.replace("image/png", "image/jpeg"));
-      } else if (format === "svg") {
-        downloadButton.setAttribute("href", img.src.replace("image/png", "image/svg+xml"));
-      } else if(format === "") {
-        alert("Please enter an image format!");
-      } else { // if format is anything other than the format options provided
-        alert("Please enter an image format!");
-
-      }
-    
-      const imgFileName = imgTitle.value + '.' + `${format}`;
+      downloadButton.setAttribute("href", img.src);
       downloadButton.setAttribute("download", imgFileName);
       downloadButton.click();
       downloadButton.remove();
