@@ -151,3 +151,26 @@ text-align: center
   border-image: linear-gradient(to right, #a771d9, rgb(171, 181, 240));
   border-image-slice: 1;
 }
+
+
+/* mobile view! */
+@media (max-width: 768px) {
+  *{
+    font-size: 10px;
+  }
+  
+  #cardContent {
+    width: auto;
+    height: auto;
+  }
+
+  body {
+    background-color: #cfb6e6;
+    background: -webkit-linear-gradient(to right, #cfb6e6, rgb(171, 181, 240));
+    background: linear-gradient(to right, #cfb6e6, rgb(171, 181, 240));
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+}
