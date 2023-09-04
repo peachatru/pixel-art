@@ -149,8 +149,18 @@ function updatePixelColor(pixelId) {
 
 // Keeping track of the elements painted so that we can revert change with the undo button
 function sendElementToStack(element) {
+ 
   if(!undoStack.includes(element)) {
     undoStack.push(element);
+  } else {
+    let indexToRemove = undoStack.indexOf(element);
+    if (indexToRemove >= 0 && indexToRemove < undoStack.length) {
+      undoStack.splice(indexToRemove, 1); // Removes 1 element at the specified index
+  }
+
+    undoStack.push(element);
+
+  
   }
 }
 
@@ -225,7 +235,7 @@ saveButton.addEventListener("click", () => {
       let format = selectImageFormat.options[selectImageFormat.selectedIndex].value;      
       const imgFileName = imgTitle.value + '.' + format;
 
-      // downloading the image
+      // downloading the image!
       const downloadButton = document.createElement("a");
       downloadButton.setAttribute("href", img.src);
       downloadButton.setAttribute("download", imgFileName);
