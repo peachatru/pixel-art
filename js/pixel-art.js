@@ -25,13 +25,13 @@ let imgTitle = document.getElementById("imgTitle");
 // keeping track of the tile's current state for the undo / redo stacks
 let undoStack = [];
 let redoStack = [];
+let redoColor = []; // we will also need to keep track of the tile's colors as the user decides to undo more than once
 
 let deviceType = "";
 //Initially draw and erase would be false
 let draw = false;
 let erase = false;
 
-let paintColor = ""; 
 // Keeping track of the tile's current position
 let tileAction = {
   mouse: {
@@ -93,14 +93,15 @@ function createCanvas() {
         // we should change the tile's background color to transparent 
         // if they're erasing that pixel 
         if (erase) {
-          paintColor = "transparent"; 
-          changeTileColor(tile.id, paintColor, false); 
+          tile.style.backgroundColor = "transparent";
         } else {
           // else then we'll update the tile's bg color 
-          paintColor = colorButton.value;       
-          changeTileColor(tile.id, paintColor, true); 
+          tile.style.backgroundColor = colorButton.value;
+          // and push it to the undo stack 
+          sendElementToStack(tile); 
         }
       });
+
       //  here we'll be listening for the event's coordinates and passing it on to 
       // check if the element's id matches the pixel's id
       tile.addEventListener(tileAction[deviceType].move, (e) => {
@@ -111,11 +112,12 @@ function createCanvas() {
         );
         //updatePixelColor
         updatePixelColor(pixelId);
-
       });
+
+
       //Stop drawing
       tile.addEventListener(tileAction[deviceType].up, () => {
-        // draw = false;
+        draw = false;
       });
 
       //append pixel to the grid canvas
@@ -130,89 +132,25 @@ createCanvasButton.addEventListener("click", () => {
 
 
 function updatePixelColor(pixelId) {
-  
   let gridColumns = document.querySelectorAll(".tile");
   //loop through all boxes
   gridColumns.forEach((element) => {
     //if id matches then color
-    if (pixelId == element.id) {
+    if (pixelId.id == element.id) {
       if (draw && !erase) {
-        paintColor = colorButton.value;
-        changeTileColor(pixelId, paintColor, true); 
-
-        // sendElementToStack(element); 
+        element.style.backgroundColor = colorButton.value;
+        sendElementToStack(element); 
       } else if (draw && erase) {
-        paintColor = "transparent";
-        changeTileColor(pixelId, paintColor, false); 
+        element.style.backgroundColor = "transparent";
       }
     }
   });
-  }
-
-function getTileElementById(tileId) {
-  // Assuming that your tile elements have unique IDs in your HTML structure
-  return document.getElementById(tileId);
 }
 
-function changeTileColor(tileId, newColor, changedFromTransparent) {
-  // Store the Tile's current state in the undo stack
-  undoStack.push({ id: tileId, color: newColor, fromTransparent: changedFromTransparent });
-  
-  // Get the tile element by its unique ID
-  const tileElement = getTileElementById(tileId); 
-
-  // Update the Tile's color
-  if (!changedFromTransparent) {
-    tileElement.style.backgroundColor = "transparent";
-  } else {
-    tileElement.style.backgroundColor = newColor;
-  }
-  
-  // Clear the redo stack
-  redoStack.length = 0;
-}
-  
-function undo() {
-  if (undoStack.length > 0) {
-    const { id, color, fromTransparent } = undoStack.pop();
-    
-    // Get the tile element by its unique ID
-    const tileElement = getTileElementById(id);
-    
-    // Perform the undo operation
-    if (fromTransparent) {
-      // If 'fromTransparent' is true, change the Tile's color back to transparent
-      tileElement.style.backgroundColor = "transparent";
-    } else {
-      // If 'fromTransparent' is false, change the Tile's color back to the original color
-      tileElement.style.backgroundColor = color;
-    }
-    
-    // Store the undone state in the redo stack
-    redoStack.push({ id, color, fromTransparent });
-  } else {
-    alert("Nothing to undo!");
-  }
-}
-  
-  
-function redo() {
-  if (redoStack.length > 0) {
-    const { id, color, fromTransparent } = redoStack.pop();
-    
-    // Get the tile element by its unique ID
-    const tileElement = getTileElementById(id);
-    
-    // Perform the redo operation
-    if (fromTransparent) {
-      // If 'fromTransparent' is true, change the Tile's color back to the original color
-      tileElement.style.backgroundColor = color;
-    }
-    
-    // Store the redone state in the undo stack
-    undoStack.push({ id, color, fromTransparent });
-  } else {
-    alert("Nothing to redo!");
+// Keeping track of the elements painted so that we can revert change with the undo button
+function sendElementToStack(element) {
+  if(!undoStack.includes(element)) {
+    undoStack.push(element);
   }
 }
 
@@ -240,13 +178,35 @@ paintButton.addEventListener("click", () => {
 
 // Undo Button: will change the most recently colored pixel to transparent
 undoButton.addEventListener("click", () => {
-  undo(); 
+  // we want to check if the undoStack is NOT empty before we pop() the top element
+  if(undoStack.length != 0) {
+    let undoTile = undoStack.pop(); 
+
+    // we also want to check if the redoStack does NOT already include the undo tile
+    // so that we can prevent that tile's background color being overridden by the most recently used color
+    if(!redoStack.includes(undoTile)) {
+      redoColor.push(undoTile.style.backgroundColor); 
+      redoStack.push(undoTile);
+    } else if(redoStack.includes(undoTile)) {
+      redoStack.push(undoTile);
+
+    }
+
+    undoTile.style.backgroundColor = "transparent"; 
+  } else {
+    alert("Nothing to undo!");
+  }
 });
 
 // Redo Button will pop the top most element and set that tile's
 // background color to the same value as the redoColor stack's element
 redoButton.addEventListener("click", () => {
-  redo();
+  if(redoStack.length != 0) {
+    let redoTile = redoStack.pop(); 
+    redoTile.style.backgroundColor = redoColor.pop(); 
+  } else {
+    alert("You can only redo as much as you undo!");
+  }
 });
 
 // saving image functionality adapted from: https://stackoverflow.com/questions/10673122/how-to-save-canvas-as-an-image-with-canvas-todataurl
@@ -278,4 +238,4 @@ saveButton.addEventListener("click", () => {
 
 // by default, we want to load the canvas grid as a 10 x 10, but the user
 // can always adjust the dimensions any time they want to!
-window.onload = createCanvas;  
+window.onload = createCanvas; 
