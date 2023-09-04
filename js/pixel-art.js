@@ -136,7 +136,7 @@ function updatePixelColor(pixelId) {
   //loop through all boxes
   gridColumns.forEach((element) => {
     //if id matches then color
-    if (pixelId == element.id) {
+    if (pixelId.id == element.id) {
       if (draw && !erase) {
         element.style.backgroundColor = colorButton.value;
         sendElementToStack(element); 
@@ -225,7 +225,7 @@ saveButton.addEventListener("click", () => {
       let format = selectImageFormat.options[selectImageFormat.selectedIndex].value;      
       const imgFileName = imgTitle.value + '.' + format;
 
-      // downloading the image!
+      // downloading the image
       const downloadButton = document.createElement("a");
       downloadButton.setAttribute("href", img.src);
       downloadButton.setAttribute("download", imgFileName);
