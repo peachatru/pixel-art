@@ -34,15 +34,15 @@
     <section class="vh-100 gradient-custom">
       <div class="container py-5">
         <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col col-xl-10">
+          <div class="col">
             <div class="card" id="cardContent">
               <div class="card-body">
                 <!-- BEGIN MAIN BODY CONTENT  -->
                 <div id="mainBody" >
                   <div class=" pt-2">
-                      <div class="row d-flex d-flex justify-content-center align-items-center">
-                        <div class="col-md-8 col-lg-9 col-xl-8">
-                          <div class="d-flex">
+                    <div class="row d-flex d-flex justify-content-center align-items-center">
+                      <div class="col-md-8 col-lg-9 col-xl-8">
+                        <div class="d-flex">
                             <!-- START TITLE SECTION -->
                             <div class="opt-wrapper">
                               <label for="imgTitle">Title: </label>
@@ -72,6 +72,7 @@
                                 </div>
                       
                                 <div class="createGrid">
+                                    <label for="make-grid">Create:</label>
                                     <button id="make-grid"><i class="fa-solid fa-circle-plus"></i></button>
                                 </div>
                               </div>
@@ -102,10 +103,10 @@
                               </div>
 
                               <!-- This is where the canvas will be created and contained -->
-                              <div class="container">
+                              <!-- <div class="container">
                                 <div id="grid"></div>
                                 </div>
-                              </div>
+                              </div> -->
                               
                               <!-- we're hiding the input type color from the user so that when they click on the paintbrush icon, 
                                 the color selector tool will pop up  -->
@@ -114,8 +115,13 @@
                               <input type="color" value="#8b8bea" id="color-input" height="0" width="0">
                           </div>
                         </div>
+                       
                       </div>
-                 
+                      <!-- This is where the canvas will be created and contained -->
+                      <div class="container">
+                        <div id="grid"></div>
+                      </div>
+                     
                   </div>
                 </div> 
                 <!-- END MAIN BODY CONTENT  -->
