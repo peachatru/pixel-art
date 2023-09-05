@@ -72,12 +72,19 @@ function createCanvas() {
   const width =  parseInt(widthOfCanvas.value);
 
   // we're limiting the canvas size to be max 20x20
-  if((width > 20) || (height > 20)) {
-    alert("Max Dimensions are 20x20!");
+  if((width > 100) || (height > 100)) {
+    alert("Max Dimensions are 100x100!");
     return;
   }
 
+    // Ensure the canvas size is limited to 100x100
+    if (width > 100 || height > 100) {
+      alert("Max Dimensions are 100x100!");
+      return;
+    }  
+
   grid.style.gridTemplateColumns = `repeat(${width},1fr)`;
+  grid.style.gridTemplateRows = `repeat(${height}, 1fr)`;
 
   for (let i = 0; i < height * width; i++) {
       count += 1; 
@@ -87,6 +94,20 @@ function createCanvas() {
       tile.classList.add("tile");
       tile.setAttribute("id", `tile${count}`);
 
+        // Set custom properties for width and height
+      if(width >= 40 || height >= 40) {
+        let newWidth = width / 100 + 15; 
+        let newHeight = height / 100 + 15; 
+        tile.style.width = `${newWidth}px`;
+        tile.style.height = `${newHeight}px`;
+      } if(width > 60 || height >= 60) {
+        let newWidth = width / 100 + 10; 
+        let newHeight = height / 100 + 10; 
+        tile.style.width = `${newWidth}px`;
+        tile.style.height = `${newHeight}px`;
+      }
+   
+  
       tile.addEventListener(tileAction[deviceType].down, () => {
         //user starts drawing
         draw = true;
@@ -109,7 +130,7 @@ function createCanvas() {
         let pixelId = document.elementFromPoint(
           !doesDeviceSupportTouch() ? e.clientX : e.touches[0].clientX,
           !doesDeviceSupportTouch() ? e.clientY : e.touches[0].clientY
-        );
+        ).id;
         //updatePixelColor
         updatePixelColor(pixelId);
       });
@@ -136,7 +157,7 @@ function updatePixelColor(pixelId) {
   //loop through all boxes
   gridColumns.forEach((element) => {
     //if id matches then color
-    if (pixelId.id == element.id) {
+    if (pixelId === element.id) {
       if (draw && !erase) {
         element.style.backgroundColor = colorButton.value;
         sendElementToStack(element); 
