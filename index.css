@@ -49,23 +49,6 @@ label {
   vertical-align: top;
 }
 
-/* .tile {
-  height: 20px;
-  width: 20px;
-  border: 1px solid #000000;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1em;
-  cursor: pointer;
-} */
-
-/* .container {
-  display: grid;
-  place-items: center;
-} */
-
 .tile {
   border: 1px solid #000000;
   text-align: center;
@@ -191,9 +174,6 @@ text-align: center
     flex-direction: column;
   }
   
-  .col {
-    margin-left: 25%;
-  }
 }
 
 
